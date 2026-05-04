@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Multi Tools</title>
+<title>Multi Tools Pro</title>
+<script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#0f0f0f;color:#fff;font-family:-apple-system,BlinkMacSystemFont,sans-serif;min-height:100vh;display:flex;flex-direction:column;font-size:17px}
@@ -11,7 +12,7 @@ body{background:#0f0f0f;color:#fff;font-family:-apple-system,BlinkMacSystemFont,
 .header h3{font-size:20px}
 .lang{padding:10px 16px;background:#2d2d2d;border:1px solid #444;color:#fff;border-radius:10px;cursor:pointer;font-size:16px}
 .nav{display:flex;background:#1a1a1a;border-bottom:1px solid #333;overflow-x:auto}
-.nav button{flex:1;background:none;border:none;color:#888;padding:18px;border-bottom:3px solid transparent;cursor:pointer;font-size:16px;white-space:nowrap}
+.nav button{flex:1;background:none;border:none;color:#888;padding:18px;border-bottom:3px solid transparent;cursor:pointer;font-size:15px;white-space:nowrap}
 .nav button.active{color:#0d6efd;border-bottom-color:#0d6efd}
 .content{display:none;padding:20px;flex:1}
 .content.active{display:block}
@@ -20,6 +21,8 @@ input,textarea,select{width:100%;padding:14px;background:#0f0f0f;border:1px soli
 .btn{background:#0d6efd;color:#fff;border:none;padding:15px;border-radius:10px;width:100%;cursor:pointer;font-size:17px;margin-top:10px;font-weight:600}
 .btn:active{background:#0b5ed7}
 .btn:disabled{background:#444;color:#777}
+.btn.copy{background:#28a745}
+.btn.scan{background:#6f42c1}
 .calc-disp{background:#0f0f0f;padding:24px;font-size:38px;text-align:right;border-radius:10px;margin-bottom:16px;min-height:80px;overflow-x:auto}
 .calc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
 .calc-btn{background:#2d2d2d;border:none;color:#fff;padding:22px;font-size:22px;border-radius:10px;cursor:pointer;font-weight:600}
@@ -35,14 +38,42 @@ h2{margin-bottom:14px;font-size:22px}
 .conv-box{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
 .conv-label{font-size:14px;color:#888;margin-bottom:6px}
 .footer{background:#1a1a1a;padding:18px;text-align:center;border-top:1px solid #333;color:#666;font-size:14px}
-.hash-box{background:#0f0f0f;padding:12px;border-radius:8px;margin:12px 0;word-break:break-all;font-family:monospace;font-size:14px;color:#0d6efd}
-.warn{color:#ffc107;font-size:14px;margin-top:8px}
-.success{color:#28a745;font-size:14px;margin-top:8px}
-</style>
-</head>
-<body>
-<div class="header">
-    <h3 id="t1">Multi Tools</h3>
-    <select class="lang" onchange="sw(this.value)" id="langSel">
-        <option value="de">🇩🇪 Deutsch</option>
-        <option value="ru
+.hash-box{background:#0f0f0f;padding:12px;border-radius:8px;margin:12px 0;word-break:break-all;font-family:monospace
+          <script>
+const L={de:{t1:'Multi Tools Pro',n1:'Rechner',n2:'Einkauf',n3:'Notizen',n4:'Umrechner',n5:'Security',n6:'Tools',n7:'Mini-KI',t2:'Einkaufsliste',b1:'Hinzufügen',ph1:'Artikel...',t3:'Notizen',ph2:'Hier tippen...',b2:'Als.txt speichern',t4:'Umrechner',o1:'Länge',o2:'Gewicht',o3:'Temperatur',l1:'Von',l2:'Zu',emp:'Leer',t5:'Datei-Sicherheitscheck',w1:'⚠️ Dateien verlassen nie deinen Browser. Es wird nur der Hash berechnet.',b3:'Bei VirusTotal prüfen',b4:'Bei Hybrid-Analysis prüfen',t6:'URL-Check',b5:'URL prüfen',ph3:'https://...',t7:'Passwort-Generator',l3:'Länge:',l4:'A-Z',l5:'a-z',l6:'0-9',l7:'Symbole',b6:'Generieren',b7:'Kopieren',t8:'QR-Code Scanner',b8:'Kamera starten',t9:'Base64 Encoder/Decoder',b9:'Encode',b10:'Decode',ph4:'Text oder Base64...',t10:'Mini-KI 2.0',w2:'💡 Tipp: Schreibe "bild: ein Hund im Park" um Bilder zu generieren',ph5:'Frag mich was oder "bild:..."',b11:'Senden',copy:'© 2026 Multi Tools Pro - Alle Rechte vorbehalten',h1:'Berechne Hash...',h2:'SHA-256:',h3:'Datei erfolgreich gehasht',h4:'Kopiert!',h5:'Kein QR-Code gefunden',h6:'QR-Code:',ai1:'Hey! Ich bin deine Mini-KI. Ich kann rechnen, erklären, übersetzen und Bilder generieren. Probier: "bild: ein Astronaut auf einem Pferd"',ai2:'Das Ergebnis ist:',ai3:'Verstehe ich nicht ganz. Probier: "2+2*5", "erkläre: API", "übersetze: hallo zu englisch" oder "bild: eine Katze"',ai4:'Generiere Bild...',ai5:'Hier ist dein Bild:'},en:{t1:'Multi Tools Pro',n1:'Calculator',n2:'Shopping',n3:'Notes',n4:'Converter',n5:'Security',n6:'Tools',n7:'Mini-AI',t2:'Shopping List',b1:'Add',ph1:'Item...',t3:'Notes',ph2:'Type here...',b2:'Save as.txt',t4:'Converter',o1:'Length',o2:'Weight',o3:'Temperature',l1:'From',l2:'To',emp:'Empty',t5:'File Security Check',w1:'⚠️ Files never leave your browser. Only hash is calculated.',b3:'Check on VirusTotal',b4:'Check on Hybrid-Analysis',t6:'URL Check',b5:'Check URL',ph3:'https://...',t7:'Password Generator',l3:'Length:',l4:'A-Z',l5:'a-z',l6:'0-9',l7:'Symbols',b6:'Generate',b7:'Copy',t8:'QR Code Scanner',b8:'Start Camera',t9:'Base64 Encoder/Decoder',b9:'Encode',b10:'Decode',ph4:'Text or Base64...',t10:'Mini-AI 2.0',w2:'💡 Tip: Type "bild: a dog in a park" to generate images',ph5:'Ask me anything or "bild:..."',b11:'Send',copy:'© 2026 Multi Tools Pro - All rights reserved',h1:'Calculating hash...',h2:'SHA-256:',h3:'File hashed successfully',h4:'Copied!',h5:'No QR code found',h6:'QR Code:',ai1:'Hey! I\'m your Mini-AI. I can calculate, explain, translate and generate images. Try: "bild: astronaut on a horse"',ai2:'The result is:',ai3:'Don\'t understand. Try: "2+2*5", "erkläre: API", "übersetze: hallo zu englisch" or "bild: cat"',ai4:'Generating image...',ai5:'Here is your image:'}};
+let lg=localStorage.lg||'de';
+document.getElementById('langSel').value=lg;
+function sw(v){lg=v;localStorage.lg=lg;ul()}
+function ul(){const t=L[lg];Object.keys(t).forEach(k=>{const e=document.getElementById(k);if(e)e.textContent=t[k]});document.getElementById('ip').placeholder=t.ph1;document.getElementById('nt').placeholder=t.ph2;document.getElementById('urlInput').placeholder=t.ph3;document.getElementById('b64Input').placeholder=t.ph4;document.getElementById('aiInput').placeholder=t.ph5;rl()}
+function tab(i){document.querySelectorAll('.content').forEach((c,j)=>c.classList.toggle('active',i===j));document.querySelectorAll('.nav button').forEach((b,j)=>b.classList.toggle('active',i===j));if(i!==4&&stream)stopCam();if(i===6&&!document.getElementById('chatBox').children.length)addMsg('ai',L[lg].ai1)}
+let c='';function ci(v){c+=v;document.getElementById('d').textContent=c||'0'}
+function cc(){c='';document.getElementById('d').textContent='0'}
+function cb(){c=c.slice(0,-1);document.getElementById('d').textContent=c||'0'}
+function ce(){try{c=eval(c).toString();document.getElementById('d').textContent=c}catch{c='';document.getElementById('d').textContent='Error'}}
+let it=JSON.parse(localStorage.it||'[]');
+function rl(){const l=document.getElementById('list');if(!it.length){l.innerHTML='<div class="empty">'+L[lg].emp+'</div>';return}l.innerHTML=it.map((i,x)=>`<div class="item ${i.d?'done':''}"><span onclick="ti(${x})" style="flex:1;cursor:pointer">${i.t}</span><div><button class="icon" onclick="ti(${x})">✓</button><button class="icon del" onclick="di(${x})">×</button></div></div>`).join('');localStorage.it=JSON.stringify(it)}
+function ai(){const i=document.getElementById('ip');if(i.value.trim()){it.push({t:i.value,d:0});i.value='';rl()}}
+function ti(i){it[i].d=!it[i].d;rl()}
+function di(i){it.splice(i,1);rl()}
+document.getElementById('nt').value=localStorage.nt||'';
+document.getElementById('nt').oninput=e=>localStorage.nt=e.target.value;
+function dn(){const b=new Blob([document.getElementById('nt').value],{type:'text/plain'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='notiz.txt';a.click()}
+const cd={l:{m:1,cm:0.01,mm:0.001,km:1000,ft:0.3048,in:0.0254},w:{kg:1,g:0.001,lb:0.453592,oz:0.0283495},t:['C','F','K']};
+function uc(){const t=document.getElementById('ct').value,uf=document.getElementById('uf'),ut=document.getElementById('ut');if(t==='t'){uf.innerHTML='<option value="C">°C</option><option value="F">°F</option><option value="K">K</option>';ut.innerHTML=uf.innerHTML;ut.value='F'}else{const u=Object.keys(cd[t]);uf.innerHTML=u.map(x=>`<option value="${x}">${x}</option>`).join('');ut.innerHTML=uf.innerHTML;ut.value=u[1]}cv()}
+function cv(){const t=document.getElementById('ct').value,v=parseFloat(document.getElementById('cf').value)||0,f=document.getElementById('uf').value,u=document.getElementById('ut').value;let r=0;if(t==='t'){let c=v;if(f==='F')c=(v-32)*5/9;if(f==='K')c=v-273.15;if(u==='F')r=c*9/5+32;else if(u==='K')r=c+273.15;else r=c}else{const base=v*cd[t][f];r=base/cd[t][u]}document.getElementById('cr').value=r.toFixed(6).replace(/\.?0+$/,'')}
+async function checkFile(){const file=document.getElementById('fileInput').files[0];const res=document.getElementById('hashResult');if(!file){res.innerHTML='';document.getElementById('vtLink').style.display='none';document.getElementById('haLink').style.display='none';return}res.innerHTML='<div class="hash-box">'+L[lg].h1+'</div>';const buf=await file.arrayBuffer();const hashBuffer=await crypto.subtle.digest('SHA-256',buf);const hashArray=Array.from(new Uint8Array(hashBuffer));const hash=hashArray.map(b=>b.toString(16).padStart(2,'0')).join('');res.innerHTML='<div class="hash-box">'+L[lg].h2+' '+hash+'</div><div class="success">'+L[lg].h3+'</div>';document.getElementById('vtLink').href='https://www.virustotal.com/gui/file/'+hash;document.getElementById('vtLink').style.display='block';document.getElementById('haLink').href='https://www.hybrid-analysis.com/search?query='+hash;document.getElementById('haLink').style.display='block'}
+function checkUrl(){const url=document.getElementById('urlInput').value.trim();if(!url)return;window.open('https://www.virustotal.com/gui/url/'+encodeURIComponent(url),'_blank')}
+function genPw(){const len=parseInt(document.getElementById('pwLength').value);const upper=document.getElementById('pwUpper').checked;const lower=document.getElementById('pwLower').checked;const num=document.getElementById('pwNum').checked;const sym=document.getElementById('pwSym').checked;let chars='';if(upper)chars+='ABCDEFGHIJKLMNOPQRSTUVWXYZ';if(lower)chars+='abcdefghijklmnopqrstuvwxyz';if(num)chars+='0123456789';if(sym)chars+='!@#$%^&*()_+-=[]{}|;:,.<>?';if(!chars)return;let pw='';const arr=new Uint32Array(len);crypto.getRandomValues(arr);for(let i=0;i<len;i++)pw+=chars[arr[i]%chars.length];document.getElementById('pwOut').textContent=pw;document.getElementById('b7').style.display='block'}
+function copyPw(){const pw=document.getElementById('pwOut').textContent;navigator.clipboard.writeText(pw);const btn=document.getElementById('b7');const old=btn.textContent;btn.textContent=L[lg].h4;setTimeout(()=>btn.textContent=old,1500)}
+let stream;async function startCam(){try{stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}});const video=document.getElementById('video');video.srcObject=stream;video.style.display='block';requestAnimationFrame(tick)}catch(e){alert('Kamera-Zugriff verweigert')}}
+function stopCam(){if(stream){stream.getTracks().forEach(t=>t.stop());stream=null}document.getElementById('video').style.display='none'}
+function tick(){const video=document.getElementById('video');if(video.readyState===video.HAVE_ENOUGH_DATA){const canvas=document.getElementById('qrCanvas');canvas.width=video.videoWidth;canvas.height=video.videoHeight;const ctx=canvas.getContext('2d');ctx.drawImage(video,0,0,canvas.width,canvas.height);const imageData=ctx.getImageData(0,0,canvas.width,canvas.height);const code=jsQR(imageData.data,imageData.width,imageData.height);if(code){document.getElementById('qrResult').innerHTML='<strong>'+L[lg].h6+'</strong><br>'+code.data;document.getElementById('qrResult').style.display='block';stopCam();return}}if(stream)requestAnimationFrame(tick)}
+function scanQR(){const file=document.getElementById('qrFile').files[0];if(!file)return;const reader=new FileReader();reader.onload=e=>{const img=new Image();img.onload=()=>{const canvas=document.getElementById('qrCanvas');canvas.width=img.width;canvas.height=img.height;const ctx=canvas.getContext('2d');ctx.drawImage(img,0,0);const imageData=ctx.getImageData(0,0,canvas.width,canvas.height);const code=jsQR(imageData.data,imageData.width,imageData.height);const res=document.getElementById('qrResult');if(code){res.innerHTML='<strong>'+L[lg].h6+'</strong><br>'+code.data;res.style.display='block'}else{res.innerHTML=L[lg].h5;res.style.display='block'}};img.src=e.target.result};reader.readAsDataURL(file)}
+function b64Enc(){const txt=document.getElementById('b64Input').value;try{document.getElementById('b64Output').value=btoa(unescape(encodeURIComponent(txt)))}catch{document.getElementById('b64Output').value='Error'}}
+function b64Dec(){const txt=document.getElementById('b64Input').value;try{document.getElementById('b64Output').value=decodeURIComponent(escape(atob(txt)))}catch{document.getElementById('b64Output').value='Error'}}
+function addMsg(type,txt){const box=document.getElementById('chatBox');const msg=document.createElement('div');msg.className='chat-msg '+type;msg.innerHTML=txt;box.appendChild(msg);box.scrollTop=box.scrollHeight}
+async function askAI(){const input=document.getElementById('aiInput');const q=input.value.trim();if(!q)return;addMsg('user',q);input.value='';if(q.toLowerCase().startsWith('bild:')){const prompt=q.slice(5).trim();addMsg('ai','<span class="typing">'+L[lg].ai4+'</span>');const url=`https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=512&height=512&nologo=true`;const img=new Image();img.onload=()=>{document.querySelector('.typing').parentElement.remove();addMsg('ai',L[lg].ai5+`<img src="${url}">`)};img.onerror=()=>{document.querySelector('.typing').parentElement.remove();addMsg('ai','Fehler beim Generieren')};img.src=url;return}try{if(/^[\d+\-*/().\s]+$/.test(q)){const res=eval(q);addMsg('ai',L[lg].ai2+' '+res);return}if(q.toLowerCase().startsWith('erkläre:')||q.toLowerCase().startsWith('explain:')){const term=q.split(':')[1].trim();addMsg('ai',`"${term}" ist ein Begriff. Für Details: Google oder Wikipedia checken.`);return}if(q.toLowerCase().includes('übersetze')||q.toLowerCase().includes('translate')){addMsg('ai','Für Übersetzungen nutze: https://translate.google.com');return}addMsg('ai',L[lg].ai3)}catch{addMsg('ai',L[lg].ai3)}}
+ul();rl();uc();
+</script>
+</body>
+</html>
