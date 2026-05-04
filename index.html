@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Multi Tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f0f0f;color:#fff;font-family:-apple-system,BlinkMacSystemFont,sans-serif;min-height:100vh;display:flex;flex-direction:column;font-size:17px}
+.header{background:#1a1a1a;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #333}
+.header h3{font-size:20px}
+.lang{padding:10px 16px;background:#2d2d2d;border:1px solid #444;color:#fff;border-radius:10px;cursor:pointer;font-size:16px}
+.nav{display:flex;background:#1a1a1a;border-bottom:1px solid #333;overflow-x:auto}
+.nav button{flex:1;background:none;border:none;color:#888;padding:18px;border-bottom:3px solid transparent;cursor:pointer;font-size:16px;white-space:nowrap}
+.nav button.active{color:#0d6efd;border-bottom-color:#0d6efd}
+.content{display:none;padding:20px;flex:1}
+.content.active{display:block}
+.card{background:#1a1a1a;border-radius:14px;padding:20px;margin-bottom:16px;border:1px solid #333}
+input,textarea,select{width:100%;padding:14px;background:#0f0f0f;border:1px solid #333;border-radius:10px;color:#fff;font-size:17px;margin:10px 0}
+.btn{background:#0d6efd;color:#fff;border:none;padding:15px;border-radius:10px;width:100%;cursor:pointer;font-size:17px;margin-top:10px;font-weight:600}
+.btn:active{background:#0b5ed7}
+.btn:disabled{background:#444;color:#777}
+.calc-disp{background:#0f0f0f;padding:24px;font-size:38px;text-align:right;border-radius:10px;margin-bottom:16px;min-height:80px;overflow-x:auto}
+.calc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.calc-btn{background:#2d2d2d;border:none;color:#fff;padding:22px;font-size:22px;border-radius:10px;cursor:pointer;font-weight:600}
+.calc-btn:active{background:#444}
+.calc-btn.op{background:#0d6efd}
+.calc-btn.clr{background:#dc3545}
+.item{background:#0f0f0f;padding:15px;margin:10px 0;border-radius:10px;display:flex;justify-content:space-between;align-items:center;border:1px solid #333;font-size:17px}
+.item.done{opacity:0.5;text-decoration:line-through}
+.icon{background:#2d2d2d;border:none;color:#fff;width:42px;height:42px;border-radius:8px;cursor:pointer;margin-left:8px;font-size:18px}
+.icon.del{background:#dc3545}
+h2{margin-bottom:14px;font-size:22px}
+.empty{text-align:center;color:#666;padding:40px;font-size:16px}
+.conv-box{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.conv-label{font-size:14px;color:#888;margin-bottom:6px}
+.footer{background:#1a1a1a;padding:18px;text-align:center;border-top:1px solid #333;color:#666;font-size:14px}
+.hash-box{background:#0f0f0f;padding:12px;border-radius:8px;margin:12px 0;word-break:break-all;font-family:monospace;font-size:14px;color:#0d6efd}
+.warn{color:#ffc107;font-size:14px;margin-top:8px}
+.success{color:#28a745;font-size:14px;margin-top:8px}
+</style>
+</head>
+<body>
+<div class="header">
+    <h3 id="t1">Multi Tools</h3>
+    <select class="lang" onchange="sw(this.value)" id="langSel">
+        <option value="de">🇩🇪 Deutsch</option>
+        <option value="ru
